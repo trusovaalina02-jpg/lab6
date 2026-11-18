@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Алина Трусова ✿ портфолио</title>
+
+  <!-- Милые шрифты -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============ ПЕРЕМЕННЫЕ ============ */
+    :root {
+      --pink:      #ffb6d5;
+      --pink-soft: #ffe3ef;
+      --lilac:     #d8b4fe;
+      --mint:      #b8f2e6;
+      --peach:     #ffd6ba;
+      --cream:     #fff7fb;
+      --text:      #5a4a52;
+      --text-soft: #8a7a82;
+      --white:     #ffffff;
+      --radius:    28px;
+      --shadow:    0 12px 32px rgba(255, 150, 190, .25);
+    }
+
+    /* ============ СБРОС ============ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; }
+
+    /* ============ ФОН С ОБЛАЧКАМИ ============ */
+    .bg-decor {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .bg-decor span {
+      position: absolute;
+      font-size: 40px;
+      opacity: .5;
+      animation: drift 20s linear infinite;
+    }
+    .bg-decor span:nth-child(1) { top: 10%; left: -10%; animation-delay: 0s; }
+    .bg-decor span:nth-child(2) { top: 30%; left: -10%; animation-delay: 4s; font-size: 32px; }
+    .bg-decor span:nth-child(3) { top: 55%; left: -10%; animation-delay: 8s; font-size: 50px; }
+    .bg-decor span:nth-child(4) { top: 80%; left: -10%; animation-delay: 2s; font-size: 28px; }
+    .bg-decor span:nth-child(5) { top: 70%; left: -10%; animation-delay: 12s; font-size: 44px; }
+
+    @keyframes drift {
+      0%   { transform: translateX(0) translateY(0) rotate(0deg); }
+      50%  { transform: translateX(60vw) translateY(-30px) rotate(10deg); }
+      100% { transform: translateX(120vw) translateY(0) rotate(0deg); }
+    }
+
+    /* ============ ПОЯВЛЕНИЕ ============ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px) scale(.98);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ============ HERO ============ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 20px;
+      position: relative;
+    }
+
+    .hero-avatar {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 6px solid var(--white);
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+      animation: bounce 3s ease-in-out infinite;
+      background: var(--pink-soft);
+    }
+    .hero-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+
+    .hero h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(32px, 6vw, 62px);
+      color: var(--pink);
+      line-height: 1.2;
+      margin-bottom: 12px;
+      text-shadow: 3px 3px 0 var(--white);
+    }
+    .hero h2 {
+      font-size: clamp(16px, 2.2vw, 22px);
+      color: var(--text-soft);
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      max-width: 560px;
+      color: var(--text-soft);
+      font-size: clamp(15px, 1.5vw, 18px);
+      margin-bottom: 32px;
+    }
+
+    .actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 30px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 16px;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--pink), var(--lilac));
+      color: var(--white);
+      box-shadow: 0 8px 22px rgba(255, 150, 190, .45);
+    }
+    .btn-primary:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 12px 28px rgba(255,150,190,.6); }
+    .btn-soft {
+      background: var(--white);
+      color: var(--pink);
+      border: 2px solid var(--pink-soft);
+    }
+    .btn-soft:hover { transform: translateY(-4px); border-color: var(--pink); }
+
+    .hero-float {
+      position: absolute;
+      font-size: 32px;
+      animation: floaty 5s ease-in-out infinite;
+      opacity: .7;
+    }
+    .hero-float:nth-child(1) { top: 18%; left: 12%; animation-delay: 0s; }
+    .hero-float:nth-child(2) { top: 25%; right: 14%; animation-delay: 1s; }
+    .hero-float:nth-child(3) { bottom: 20%; left: 18%; animation-delay: 2s; }
+    .hero-float:nth-child(4) { bottom: 25%; right: 12%; animation-delay: 1.5s; }
+
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50%      { transform: translateY(-16px) rotate(5deg); }
+    }
+
+    /* ============ СЕКЦИИ ============ */
+    section { padding: 100px 20px; }
+    .wrap { max-width: 1100px; margin: 0 auto; }
+
+    .section-title {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(28px, 4vw, 44px);
+      color: var(--pink);
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--text-soft);
+      max-width: 520px;
+      margin: 0 auto 50px;
+      font-size: 16px;
+    }
+
+    /* ============ ОБО МНЕ ============ */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 50px;
+      align-items: center;
+      background: var(--white);
+      padding: 44px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 8px solid var(--pink-soft);
+      box-shadow: 0 8px 24px rgba(255,150,190,.3);
+    }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+    .about-text h3 {
+      font-family: 'Pacifico', cursive;
+      font-size: 26px;
+      color: var(--pink);
+      margin-bottom: 14px;
+    }
+    .about-text p {
+      color: var(--text-soft);
+      margin-bottom: 14px;
+      font-size: 16px;
+    }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .chip {
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: var(--pink-soft);
+      color: var(--pink);
+      font-size: 14px;
+      font-weight: 700;
+      transition: transform .2s, background .2s;
+      cursor: default;
+    }
+    .chip:hover { transform: scale(1.08) rotate(-2deg); background: var(--pink); color: #fff; }
+
+    /* ============ ГАЛЕРЕЯ ============ */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+    }
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--pink-soft);
+      box-shadow: 0 8px 20px rgba(255,150,190,.2);
+      transition: transform .35s ease, box-shadow .35s ease;
+      cursor: pointer;
+    }
+    .gallery-item:hover {
+      transform: translateY(-6px) rotate(-1deg) scale(1.02);
+      box-shadow: 0 16px 32px rgba(255,150,190,.4);
+    }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .6s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.1); }
+
+    .gallery-caption {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 20px 16px 14px;
+      background: linear-gradient(transparent, rgba(90,74,82,.75));
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      transform: translateY(100%);
+      transition: transform .35s ease;
+    }
+    .gallery-item:hover .gallery-caption { transform: translateY(0); }
+
+    /* ============ ХАРАКТЕРИСТИКИ ============ */
+    .traits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .trait {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(255,150,190,.15);
+      transition: transform .3s ease, box-shadow .3s ease;
+      border: 2px solid transparent;
+    }
+    .trait:hover {
+      transform: translateY(-6px);
+      border-color: var(--pink-soft);
+      box-shadow: 0 16px 32px rgba(255,150,190,.3);
+    }
+    .trait-icon {
+      font-size: 42px;
+      margin-bottom: 12px;
+      display: inline-block;
+      animation: wiggle 3s ease-in-out infinite;
+    }
+    .trait:nth-child(2) .trait-icon { animation-delay: .5s; }
+    .trait:nth-child(3) .trait-icon { animation-delay: 1s; }
+    .trait:nth-child(4) .trait-icon { animation-delay: 1.5s; }
+
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0); }
+      25%      { transform: rotate(-8deg); }
+      75%      { transform: rotate(8deg); }
+    }
+    .trait h4 {
+      font-size: 18px;
+      color: var(--pink);
+      margin-bottom: 8px;
+      font-weight: 800;
+    }
+    .trait p { font-size: 14px; color: var(--text-soft); }
+
+    /* ============ ИНТЕРАКТИВНЫЕ ФАКТЫ ============ */
+    .fun-facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    .fun-fact {
+      padding: 12px 22px;
+      background: var(--white);
+      border-radius: 999px;
+      font-weight: 700;
+      color: var(--text);
+      box-shadow: 0 4px 14px rgba(255,150,190,.2);
+      transition: transform .25s, background .25s, color .25s;
+      cursor: pointer;
+      user-select: none;
+    }
+    .fun-fact:hover { transform: translateY(-3px) rotate(-1deg); }
+    .fun-fact.active {
+      background: linear-gradient(135deg, var(--pink), var(--lilac));
+      color: #fff;
+    }
+
+    /* ============ ТЕХНОЛОГИИ (CSS GRID) ============ */
+    .tech {
+      background: var(--pink-soft);
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .tech-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(255,150,190,.18);
+      border: 2px solid transparent;
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .tech-card::before {
+      content: "";
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: var(--pink-soft);
+      opacity: .6;
+      transition: transform .4s ease;
+    }
+    .tech-card:hover {
+      transform: translateY(-8px) rotate(-1deg);
+      border-color: var(--pink);
+      box-shadow: 0 18px 36px rgba(255,150,190,.35);
+    }
+    .tech-card:hover::before { transform: scale(1.5); }
+
+    .tech-icon {
+      font-size: 44px;
+      margin-bottom: 14px;
+      display: inline-block;
+      position: relative;
+      z-index: 1;
+      animation: wiggle 3s ease-in-out infinite;
+    }
+    .tech-card:nth-child(2) .tech-icon { animation-delay: .3s; }
+    .tech-card:nth-child(3) .tech-icon { animation-delay: .6s; }
+    .tech-card:nth-child(4) .tech-icon { animation-delay: .9s; }
+    .tech-card:nth-child(5) .tech-icon { animation-delay: 1.2s; }
+    .tech-card:nth-child(6) .tech-icon { animation-delay: 1.5s; }
+
+    .tech-card h4 {
+      font-family: 'Pacifico', cursive;
+      font-size: 20px;
+      color: var(--pink);
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+    .tech-card p {
+      color: var(--text-soft);
+      font-size: 14px;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tech-level {
+      margin-top: 16px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--pink-soft);
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+    }
+    .tech-level span {
+      display: block;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--pink), var(--lilac));
+      transition: width 1s ease;
+    }
+
+    /* ============ КОНТАКТЫ ============ */
+    .contact { text-align: center; }
+    .contact-box {
+      display: inline-block;
+      padding: 40px 48px;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .contact-box a {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(18px, 2.5vw, 26px);
+      color: var(--pink);
+      border-bottom: 3px dotted var(--pink-soft);
+      padding-bottom: 4px;
+      transition: color .3s, border-color .3s;
+    }
+    .contact-box a:hover { color: var(--lilac); border-color: var(--lilac); }
+
+    /* ============ ПОДВАЛ ============ */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: var(--text-soft);
+      font-size: 14px;
+    }
+
+    /* ============ МЕНЮ-БУРГЕР ============ */
+    .menu-toggle {
+      position: fixed;
+      top: 20px; right: 20px;
+      z-index: 200;
+      width: 54px; height: 54px;
+      border-radius: 50%;
+      background: var(--white);
+      box-shadow: 0 6px 18px rgba(255,150,190,.35);
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      gap: 5px;
+      transition: transform .25s;
+    }
+    .menu-toggle:hover { transform: scale(1.08) rotate(5deg); }
+    .menu-toggle span {
+      width: 22px; height: 2.5px; background: var(--pink); border-radius: 2px;
+      transition: transform .3s, opacity .3s;
+    }
+    .menu-toggle.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .menu-toggle.open span:nth-child(2) { opacity: 0; }
+    .menu-toggle.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    .menu {
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 247, 251, .96);
+      backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 26px;
+      z-index: 150;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .35s ease;
+    }
+    .menu.open { opacity: 1; pointer-events: auto; }
+    .menu a {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(24px, 4vw, 40px);
+      color: var(--text);
+      transition: color .25s, transform .25s;
+    }
+    .menu a:hover { color: var(--pink); transform: scale(1.08) rotate(-2deg); }
+
+    /* ============ АДАПТИВ ============ */
+    @media (max-width: 800px) {
+      .about-grid { grid-template-columns: 1fr; text-align: center; padding: 30px; }
+      .about-photo { max-width: 240px; margin: 0 auto; }
+      .chips { justify-content: center; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 70px 16px; }
+      .hero-float { display: none; }
+      .btn { padding: 12px 24px; font-size: 15px; }
+      .tech-grid { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Фоновые облачка -->
+  <div class="bg-decor">
+    <span>☁️</span><span>🌸</span><span>☁️</span><span>✨</span><span>🎀</span>
+  </div>
+
+  <!-- Бургер -->
+  <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню">
+    <span></span><span></span><span></span>
+  </button>
+
+  <nav class="menu" id="menu">
+    <a href="#about">Обо мне 🌷</a>
+    <a href="#gallery">Галерея 📸</a>
+    <a href="#traits">Характер 💖</a>
+    <a href="#tech">Технологии 💻</a>
+    <a href="#contact">Контакты 💌</a>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <div class="hero-float">🌸</div>
+    <div class="hero-float">✨</div>
+    <div class="hero-float">🎀</div>
+    <div class="hero-float">💕</div>
+
+    <div class="hero-avatar">
+      <img src="photo2.jpg" alt="Алина">
+    </div>
+
+    <h1>Алина Трусова</h1>
+    <h2>супер веб-разработчик ✿ и просто милашка</h2>
+    <p>Создаю уютные и красивые сайты с любовью. Люблю котиков, бутерброды по утрам и красивый код.</p>
+
+    <div class="actions">
+      <a href="#contact" class="btn btn-primary">Написать мне 💌</a>
+      <a href="#gallery" class="btn btn-soft">Мои фото 📸</a>
+    </div>
+  </header>
+
+  <!-- ===== ОБО МНЕ ===== -->
+  <section id="about">
+    <div class="wrap">
+      <h2 class="section-title reveal">Обо мне 🌷</h2>
+      <p class="section-sub reveal">Немного о том, кто я и что люблю</p>
+
+      <div class="about-grid reveal">
+        <div class="about-photo">
+          <img src="photo1.jpg" alt="Моё фото">
+        </div>
+
+        <div class="about-text">
+          <h3>Привет, я Алина 👋</h3>
+          <p>Мне нравится делать сайты, которые радуют глаз и поднимают настроение. Вёрстка — моя маленькая магия ✨</p>
+          <p>Верстаю на HTML и CSS, потихоньку добавляю JavaScript и не боюсь экспериментировать с дизайном.</p>
+
+          <div class="chips">
+            <span class="chip">HTML5 💻</span>
+            <span class="chip">CSS3 🎨</span>
+            <span class="chip">Flexbox 🌈</span>
+            <span class="chip">Grid 📐</span>
+            <span class="chip">Адаптив 📱</span>
+            <span class="chip">Анимации ✨</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ГАЛЕРЕЯ ===== -->
+  <section id="gallery">
+    <div class="wrap">
+      <h2 class="section-title reveal">Моя галерея 📸</h2>
+      <p class="section-sub reveal">Любимые моменты и фото</p>
+
+      <div class="gallery">
+        <div class="gallery-item reveal">
+          <img src="photo3.jpg" alt="Фото 1">
+          <div class="gallery-caption">Тёплый момент 🌸</div>
+        </div>
+
+        <div class="gallery-item reveal">
+          <img src="photo4.jpg" alt="Фото 2">
+          <div class="gallery-caption">Утро с кофе ☕</div>
+        </div>
+
+        <div class="gallery-item reveal">
+          <img src="photo5.jpg" alt="Фото 3">
+          <div class="gallery-caption">Мой рабочий уголок 💻</div>
+        </div>
+
+        <div class="gallery-item reveal">
+          <img src="photo6.jpg" alt="Фото 4">
+          <div class="gallery-caption">Любимый вид 🌇</div>
+        </div>
+
+        <div class="gallery-item reveal">
+          <img src="photo7.jpg" alt="Фото 5">
+          <div class="gallery-caption">Что-то милое 🐱</div>
+        </div>
+
+        <div class="gallery-item reveal">
+          <img src="photo8.jpg" alt="Фото 6">
+          <div class="gallery-caption">Вдохновение ✨</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ХАРАКТЕРИСТИКИ ===== -->
+  <section id="traits">
+    <div class="wrap">
+      <h2 class="section-title reveal">Мой характер 💖</h2>
+      <p class="section-sub reveal">То, что делает меня мной</p>
+
+      <div class="traits">
+        <div class="trait reveal">
+          <span class="trait-icon">🌸</span>
+          <h4>Добрая</h4>
+          <p>Всегда помогу и поддержу, даже если просто нужен тёплый чат.</p>
+        </div>
+
+        <div class="trait reveal">
+          <span class="trait-icon">🎨</span>
+          <h4>Творческая</h4>
+          <p>Люблю красивые цвета, аккуратные формы и милые детали в дизайне.</p>
+        </div>
+
+        <div class="trait reveal">
+          <span class="trait-icon">💻</span>
+          <h4>Увлечённая</h4>
+          <p>Могу часами возиться с вёрсткой, пока всё не станет идеально.</p>
+        </div>
+
+        <div class="trait reveal">
+          <span class="trait-icon">🐱</span>
+          <h4>Кошатница</h4>
+          <p>Котики — источник вдохновения и хорошего настроения.</p>
+        </div>
+      </div>
+
+      <div class="fun-facts reveal">
+        <div class="fun-fact">Люблю бутерброды 🥪</div>
+        <div class="fun-fact">Обожаю розовый 💗</div>
+        <div class="fun-fact">Кофе по утрам ☕</div>
+        <div class="fun-fact">Мечтаю о котике 🐾</div>
+        <div class="fun-fact">Верю в магию ✨</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ТЕХНОЛОГИИ (GRID) ===== -->
+  <section id="tech" class="tech">
+    <div class="wrap">
+      <h2 class="section-title reveal">Технологии, которыми я владею 💻</h2>
+      <p class="section-sub reveal">Инструменты, с которыми я работаю каждый день</p>
+
+      <div class="tech-grid">
+        <div class="tech-card reveal">
+          <span class="tech-icon">🌐</span>
+          <h4>HTML5</h4>
+          <p>Семантическая разметка, доступность, формы и медиа.</p>
+          <div class="tech-level"><span style="width: 95%;"></span></div>
+        </div>
+
+        <div class="tech-card reveal">
+          <span class="tech-icon">🎨</span>
+          <h4>CSS3</h4>
+          <p>Стилизация, анимации, переменные, адаптивная вёрстка.</p>
+          <div class="tech-level"><span style="width: 90%;"></span></div>
+        </div>
+
+        <div class="tech-card reveal">
+          <span class="tech-icon">📐</span>
+          <h4>CSS Grid</h4>
+          <p>Сложные сетки, именованные области, auto-fit и minmax.</p>
+          <div class="tech-level"><span style="width: 85%;"></span></div>
+        </div>
+
+        <div class="tech-card reveal">
+          <span class="tech-icon">🌈</span>
+          <h4>Flexbox</h4>
+          <p>Одномерные раскладки, выравнивание, гибкие карточки.</p>
+          <div class="tech-level"><span style="width: 90%;"></span></div>
+        </div>
+
+        <div class="tech-card reveal">
+          <span class="tech-icon">📱</span>
+          <h4>Адаптив</h4>
+          <p>Media queries, mobile-first, гибкие изображения и типографика.</p>
+          <div class="tech-level"><span style="width: 80%;"></span></div>
+        </div>
+
+        <div class="tech-card reveal">
+          <span class="tech-icon">⚡</span>
+          <h4>JavaScript</h4>
+          <p>Базовые скрипты, события, DOM, интерактив на странице.</p>
+          <div class="tech-level"><span style="width: 65%;"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== КОНТАКТЫ ===== -->
+  <section id="contact">
+    <div class="wrap contact">
+      <h2 class="section-title reveal">Контакты 💌</h2>
+      <p class="section-sub reveal">Всегда рада новым знакомствам</p>
+
+      <div class="contact-box reveal">
+        <a href="mailto:trusovaalina02@gmail.com">trusovaalina02@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Алина Трусова · сделано с 💖 и CSS
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('menu');
+
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        toggle.classList.remove('open');
+        menu.classList.remove('open');
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('.fun-fact').forEach(fact => {
+      fact.addEventListener('click', () => {
+        fact.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>
